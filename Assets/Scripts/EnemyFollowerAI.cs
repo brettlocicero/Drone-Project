@@ -29,7 +29,7 @@ public class EnemyFollowerAI : MonoBehaviour
 
     void Start() 
     {
-        // target = PlayerInstance.instance.transform;
+        target = PlayerInstance.instance.transform;
         rb = GetComponent<Rigidbody>();
 
         if (setRandomPitch)
@@ -67,21 +67,11 @@ public class EnemyFollowerAI : MonoBehaviour
             anim.SetBool("Walking", true);
         }
 
-        if (health <= 0f)
-        {
-            var d = Instantiate(deathFX, transform.position, transform.rotation);
-            d.transform.localScale = transform.localScale;
-            Destroy(d, 10f);
-
-            //CinemachineShake.instance.ShakeCamera(camShakeAmount, 0.5f, 50f);
-            //target.GetComponent<PlayerInstance>().AddMoney(Random.Range(5, 10));
-            Destroy(gameObject);
-        }
-
         //failsafe
         if (transform.position.y < -100f) 
         {
-            health = 0f;
+            WaveManager.instance.RemoveEnemyFromList(transform);
+            Destroy(gameObject);
         }
     }
 
@@ -113,5 +103,17 @@ public class EnemyFollowerAI : MonoBehaviour
     public void TakeDamage (float dmg)
     {
         health -= dmg;
+
+        if (health <= 0f)
+        {
+            var d = Instantiate(deathFX, transform.position, transform.rotation);
+            d.transform.localScale = transform.localScale;
+            Destroy(d, 10f);
+
+            //CinemachineShake.instance.ShakeCamera(camShakeAmount, 0.5f, 50f);
+            //target.GetComponent<PlayerInstance>().AddMoney(Random.Range(5, 10));
+            WaveManager.instance.RemoveEnemyFromList(transform);
+            Destroy(gameObject);
+        }
     }
 }

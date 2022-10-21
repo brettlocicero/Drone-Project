@@ -24,10 +24,12 @@ public class Drone : MonoBehaviour
     Rigidbody rb;
     Vector3 dir;
     float dist, force; 
+    Vector2 velRandOffset;
 
     void Start ()
     {
         rb = GetComponent<Rigidbody>();
+        velRandOffset = new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f));
     }
 
     void Update ()
@@ -36,9 +38,13 @@ public class Drone : MonoBehaviour
         Quaternion res = Quaternion.Euler(tiltDir);
 		droneObj.localRotation = Quaternion.Slerp(droneObj.localRotation, res, (Time.deltaTime * 5f));
 
-        if (!target) return;
+        if (!target) 
+        {
+            if (!AttemptFindNewTarget())
+                return;
+        }
 
-/////// ONLY THINGS THAT DO NOT USE TARGET BELOW
+/////// ONLY THINGS THAT DO NOT USE TARGET ABOVE
         
         transform.LookAt(target);
         FireProjController();
@@ -46,14 +52,20 @@ public class Drone : MonoBehaviour
 
     void FixedUpdate () 
     {
-        if (!target) return;
+        rb.velocity *= 0.95f;
+
+        if (!target) 
+        {
+            if (!AttemptFindNewTarget())
+                return;
+        }
         
         dist = Vector3.Distance(transform.position, target.position);
         if (dist < stoppingDist) return;
 
         force = (dist * elusiveness);
         dir = (target.position - transform.position).normalized * force;        
-        rb.velocity = new Vector3(dir.x, 0f, dir.z);
+        rb.velocity = new Vector3(dir.x + velRandOffset.x, 0f, dir.z + velRandOffset.y);
     }
 
     void FireProjController () 
@@ -70,6 +82,18 @@ public class Drone : MonoBehaviour
 
             counter = 0f;
         }        
+    }
+
+    bool AttemptFindNewTarget () 
+    {
+        if (WaveManager.instance.CurrentEnemyCount() > 0) 
+        {
+            target = WaveManager.instance.GetRandomEnemy();
+            return true;
+        }
+
+        else 
+            return false;
     }
 
     Vector3 CalculateSpread () 

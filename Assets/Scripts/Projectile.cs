@@ -57,7 +57,7 @@ public class Projectile : MonoBehaviour
 						hitInfo.collider.gameObject.SendMessage("TakeDamage", Random.Range(damageRange.x, damageRange.y), SendMessageOptions.DontRequireReceiver);
 					}
 
-					print(hitInfo.collider.name);
+					//print(hitInfo.collider.name);
 					Destroy(gameObject);
 				}
 
