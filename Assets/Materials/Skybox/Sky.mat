@@ -114,16 +114,17 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Stars: 0
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - Color_1: {r: 0.5707547, g: 0.8387251, b: 1, a: 0}
-    - Color_2: {r: 0.45098042, g: 0.058823533, b: 0.058823533, a: 0}
+    - Color_2: {r: 0, g: 0, b: 0, a: 0}
     - HorizonColor: {r: 1, g: 1, b: 1, a: 0}
     - SkyColor: {r: 1, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _CloudColor: {r: 1, g: 0, b: 0, a: 1}
+    - _CloudColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MassMult: {r: 1, g: 1, b: 1, a: 0}
