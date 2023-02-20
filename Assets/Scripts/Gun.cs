@@ -87,7 +87,7 @@ public class Gun : MonoBehaviour
     
     void Animation () 
     {
-        moving = (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0) && !cci.dashing;
+        moving = (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0) && !cci.dashing && cci.cc.isGrounded;
         anim.SetBool("Walking", moving);
     }
 

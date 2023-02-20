@@ -8,7 +8,7 @@ public class CCImpact : MonoBehaviour
     [SerializeField] Animator dashScreen;
     public bool dashing;
     Vector3 impact = Vector3.zero;
-    CharacterController cc;
+    public CharacterController cc;
 
     float playerHeight;
 

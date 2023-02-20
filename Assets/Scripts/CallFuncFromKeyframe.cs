@@ -4,10 +4,5 @@ using UnityEngine;
 
 public class CallFuncFromKeyframe : MonoBehaviour
 {
-    [SerializeField] EnemyFollowerAI ai;
 
-    public void Call ()
-    {
-        ai.Attack();
-    }
 }

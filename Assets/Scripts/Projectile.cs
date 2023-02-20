@@ -57,8 +57,12 @@ public class Projectile : MonoBehaviour
 						hitInfo.collider.gameObject.SendMessage("TakeDamage", Random.Range(damageRange.x, damageRange.y), SendMessageOptions.DontRequireReceiver);
 					}
 
-					//print(hitInfo.collider.name);
-					Destroy(gameObject);
+					//print(hitInfo.collider.name
+					gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    gameObject.GetComponent<Rigidbody>().isKinematic = true;
+					gameObject.GetComponent<MeshRenderer>().enabled = false;
+
+					Destroy(gameObject, 5f);
 				}
 
 				if (!hitInfo.collider.isTrigger)
