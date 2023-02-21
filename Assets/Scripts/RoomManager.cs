@@ -10,15 +10,25 @@ public class RoomManager : MonoBehaviour
     [SerializeField] int roomNumber = 0;
     [SerializeField] GameObject currentRoom;
 
+    [Header("References")]
+    [SerializeField] Transform mainCam;
+    [SerializeField] Animator levelLoader;
+
     int regionIndex = 0;
 
     void Start () 
     {
-        LoadNextRoom();
+        StartCoroutine(LoadNextRoom());
     }
 
-    public void LoadNextRoom ()
+    IEnumerator LoadNextRoom ()
     {
+        levelLoader.SetTrigger("LoadLevel");
+        levelLoader.transform.position = mainCam.position;
+
+        // delay for level loader animation
+        yield return new WaitForSeconds(1f);
+
         roomNumber++;
         Debug.Log("Loading next room -> index " + roomNumber);
 
