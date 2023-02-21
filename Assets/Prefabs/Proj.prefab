@@ -4891,7 +4891,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 179
   skinWidth: 0.1
-  damageRange: {x: 10, y: 15}
+  damageRange: {x: 25, y: 30}
 --- !u!33 &7650852285661705537
 MeshFilter:
   m_ObjectHideFlags: 0

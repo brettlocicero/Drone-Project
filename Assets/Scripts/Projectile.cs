@@ -54,7 +54,7 @@ public class Projectile : MonoBehaviour
 					if (hitInfo.collider.gameObject.layer == 7) 
 					{
 						//PlayerInstance.instance.GetComponent<AudioSource>().Play();
-						hitInfo.collider.gameObject.SendMessage("TakeDamage", Random.Range(damageRange.x, damageRange.y), SendMessageOptions.DontRequireReceiver);
+						hitInfo.collider.gameObject.SendMessage("TakeDamage", Random.Range((int)damageRange.x, (int)damageRange.y), SendMessageOptions.DontRequireReceiver);
 					}
 
 					//print(hitInfo.collider.name

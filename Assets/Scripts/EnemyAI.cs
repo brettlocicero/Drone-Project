@@ -11,6 +11,11 @@ public class EnemyAI : MonoBehaviour
 
     Vector3 dir, lookAt;
 
+    void Start () 
+    {
+        target = PlayerInstance.instance.transform;
+    }
+
     void FixedUpdate ()
     {
         Move();
@@ -23,5 +28,13 @@ public class EnemyAI : MonoBehaviour
         transform.LookAt(lookAt);
 
         rb.MovePosition(transform.position + dir * moveSpeed * Time.deltaTime);
+    }
+
+    public void TakeDamage (int dmg) 
+    {
+        health -= dmg;
+
+        if (health <= 0f)
+            Destroy(gameObject);
     }
 }
