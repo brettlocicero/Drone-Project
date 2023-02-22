@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] int health = 50;
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] Rigidbody rb;
+    [SerializeField] GameObject deathFX;
 
     Vector3 dir, lookAt;
 
@@ -35,6 +36,13 @@ public class EnemyAI : MonoBehaviour
         health -= dmg;
 
         if (health <= 0f)
-            Destroy(gameObject);
+            Die();
+    }
+
+    void Die ()
+    {
+        GameObject deathFXObj = Instantiate(deathFX, transform.position, transform.rotation);
+        Destroy(deathFXObj, 5f);
+        Destroy(gameObject);
     }
 }

@@ -4890,7 +4890,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 179
-  skinWidth: 0.1
+  skinWidth: 0.5
   damageRange: {x: 25, y: 30}
 --- !u!33 &7650852285661705537
 MeshFilter:
@@ -4968,7 +4968,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &417910705860942606
 BoxCollider:
   m_ObjectHideFlags: 0

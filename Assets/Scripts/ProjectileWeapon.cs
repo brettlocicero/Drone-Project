@@ -46,7 +46,6 @@ public class ProjectileWeapon : MonoBehaviour
     {
         Animation();
         Shooting();
-        Sprinting();
         Dashing();
     }
 
@@ -124,7 +123,7 @@ public class ProjectileWeapon : MonoBehaviour
         Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         input = Vector3.ClampMagnitude(input, 1f);
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) && input.magnitude > 0 && sprinting) 
+        if (Input.GetKeyDown(KeyCode.LeftControl) && input.magnitude > 0) 
             cci.AddImpact(PlayerInstance.instance.transform.TransformDirection(input), 300f);
     }
 }
